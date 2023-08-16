@@ -57,8 +57,8 @@ namespace Tetris
         {
             InitializeComponent();
             imageControls = SetupGameCanvas(gameState.GameGrid);
-            SoundPlayer sp = new SoundPlayer(@"Assets/ANGUISH_-EXILED_-Elfass-Гуляю.wav");
-            sp.PlayLooping();
+            //SoundPlayer sp = new SoundPlayer("Assets/ANGUISH_-EXILED_-Elfass-Гуляю.wav");
+            //sp.PlayLooping();
         }
 
         private Image[,] SetupGameCanvas (GameGrid grid)
