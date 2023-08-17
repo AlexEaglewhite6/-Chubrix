@@ -27,6 +27,9 @@
 
         public int Score { get; private set; }
 
+        public double Speed { get; set; }
+        public int Freeze { get; set; }
+
         public Block HeldBlock { get; private set; }
 
         public bool CanHold { get; private set; }
@@ -109,7 +112,15 @@
                 GameGrid[p.Row, p.Column] = CurrentBlock.Id;
             }
 
-            Score += GameGrid.ClearFullRows();
+            int tmpScore = GameGrid.ClearFullRows();
+            
+            if (tmpScore >= 2) 
+            {
+                Freeze += tmpScore;
+                
+            }
+
+            Score += tmpScore;
 
             if (IsGameOver())
             {

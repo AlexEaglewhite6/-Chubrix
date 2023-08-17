@@ -41,7 +41,7 @@
         </Viewbox>
 
         <TextBlock x:Name="ScoreText" Grid.Row="0" Grid.Column="1" Text="Очки: " Margin="0, 10" TextAlignment="Center" />
-
+        <TextBlock x:Name="SpeedText" Grid.Row="0" Grid.Column="2" Text="Скорость: " TextAlignment="Center" Margin="0, 10"/>
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="На удержании" TextAlignment="Center" Margin="20"/>
             <Image x:Name="HoldImage" Margin="20" Width="125"/>
