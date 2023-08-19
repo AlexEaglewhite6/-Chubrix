@@ -148,36 +148,6 @@ namespace Tetris
             SpeedText.Text = $"Скорость: {Math.Round(gameState.Speed, 2)}";
         }
 
-        //private int ConvertToSpeed(int delay)
-        //{
-        //    int x = (maxDelay-minDelay)/(delayDecrease*2);
-        //    for (int i = maxDelay; i >= minDelay; i-=delayDecrease)
-        //    {
-        //        if(delay == i)
-        //        {
-        //            if (delay > (maxDelay - minDelay) / 2) return delay - x * 2 * delayDecrease;
-        //            else if (delay < (maxDelay - minDelay) / 2) return delay + x * 2 * delayDecrease;
-        //            else return delay;
-        //        }
-        //        x--;
-                
-        //    }
-            //for(int i = (maxDelay-minDelay)/(delayDecrease*2); i != maxDelay/2; i --) 
-            //{
-                
-            //    if(delay > maxDelay/2)
-            //    {
-            //        // 1000 - 900 = 100 // 900 = (18 * 2 * 25)
-            //        // 975 - 850 = 125  // 850 = (17 * 2 * 25)
-            //        // ...
-            //        // 450 = 450        // 450 = (9 * 2 * 25)
-            //        // ...
-            //        // 125 + 850 = 975  // 850 = (17 * 2 * 25)
-            //        // 100 + 900 = 1000 // 900 = (18 * 2 * 25)
-            //    }
-            //}
-            //return 0;
-        //}
         private async Task GameLoop()
         {
 
@@ -185,16 +155,31 @@ namespace Tetris
 
             while (!gameState.GameOver)
             {
+                if(!gameState.isPaused)
+                {
+                    PauseMenu.Visibility = Visibility.Hidden;
+                    
+                    gameState.MoveBlockDown();
+                    Draw(gameState);
+                }
+                else
+                {
+                    PauseMenu.Visibility = Visibility.Visible;
+                }
+
                 int delay = Math.Max(minDelay, maxDelay - (gameState.Score * delayDecrease) + (gameState.Freeze * delayDecrease * 2));
                 if (delay > 1000) delay = maxDelay;
                 gameState.Speed = (double) maxDelay / delay;
                 await Task.Delay(delay);
-                gameState.MoveBlockDown();
-                Draw(gameState);
+                
             }
 
             GameOverMenu.Visibility = Visibility.Visible;
             FinalScoreText.Text = $"Очки: {gameState.Score}";
+        }
+        private void GamePaused(object sender, RoutedEventArgs e)
+        {
+            gameState.IsPaused();
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -237,6 +222,9 @@ namespace Tetris
                     break;
                 case Key.Space:
                     gameState.DropBlock();
+                    break;
+                case Key.Escape:
+                    gameState.IsPaused();
                     break;
                 default:
                     return;

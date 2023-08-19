@@ -63,6 +63,19 @@
                         Click="PlayAgain_Click"/>
             </StackPanel>
         </Grid>
-        <!--<MediaElement x:Name="mediaElement" Source="Assets/Solway-Её-сердце.wav" />-->
+        <Grid x:Name="PauseMenu" Background="#CC000000"
+              Grid.RowSpan="2" Grid.ColumnSpan="3" Visibility="Hidden">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Пауза" FontSize="48" TextAlignment="Center"/>
+                <Button Content="I I"
+                        Margin="0, 20, 0, 0"
+                        Padding="5"
+                        Click="GamePaused" Foreground="White">
+                    <Button.Background>
+                        <SolidColorBrush Color="White" Opacity="0"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

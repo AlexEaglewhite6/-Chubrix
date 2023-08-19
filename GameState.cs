@@ -25,6 +25,8 @@
         public BlockQueue blockQueue { get; }
         public bool GameOver { get; private set; }
 
+        public bool isPaused { get; private set; }
+
         public int Score { get; private set; }
 
         public double Speed { get; set; }
@@ -40,6 +42,7 @@
             blockQueue = new BlockQueue();
             CurrentBlock = blockQueue.GetAndUpdate();
             CanHold = true;
+            isPaused = false;
         }
 
         private bool BlockFits()
@@ -51,6 +54,10 @@
             return true;
         }
 
+        public void IsPaused()
+        {
+            isPaused = !isPaused;
+        }
         public void HoldBlock()
         {
             if (!CanHold)
