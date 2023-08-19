@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BlockQueue.cs" />
+    <Compile Include="ChuevBlock.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="SBlock.cs" />
     <Compile Include="TBlock.cs" />
